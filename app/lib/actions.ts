@@ -66,7 +66,7 @@ export type State = {
   };
 
 export async function createInvoice(prevState: State, formData: FormData) {
-    console.log('ESTADO DEL FORM', prevState)
+    
     const validatedFields = CreateInvoce.safeParse({
         customerId: formData.get('customerId'),
         amount: formData.get('amount'),
@@ -91,11 +91,13 @@ export async function createInvoice(prevState: State, formData: FormData) {
         VALUES (${customerId}, ${amountInCents}, ${status}, ${date});`;
         
     } catch (error){
-        console.error('Error creating invoice: ', error);
-        return  { errors: error,
+        return  { 
+            errors: {...prevState.errors},
             message:'Error creating invoice:',
         }
     }
+
+    
 
     revalidatePath('/dashboard/invoices');
     redirect('/dashboard/invoices');
