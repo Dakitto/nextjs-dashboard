@@ -13,8 +13,6 @@ import { useActionState } from 'react';
 import { authenticate } from '../lib/actions';
 import { useSearchParams } from 'next/navigation';
 
-import { Suspense } from 'react';
-
 export default function LoginForm() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl') || '/dashboard';
