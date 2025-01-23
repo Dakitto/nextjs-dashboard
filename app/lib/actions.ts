@@ -92,7 +92,7 @@ export async function createInvoice(prevState: State, formData: FormData) {
         
     } catch (error){
         return  { 
-            errors: {...prevState.errors},
+            errors: {...prevState.errors,error},
             message:'Error creating invoice:',
         }
     }
